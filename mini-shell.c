@@ -32,5 +32,5 @@ int main(int argc,char ** argv) {
         miniShell = strcmp(input,"exit\n\0");
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
