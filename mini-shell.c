@@ -52,8 +52,8 @@ int main(int argc,char ** argv) {
 
         wait(&childFork);
 
-        /*Vérification si la commande exit est saisie*/
-        miniShell = strcmp(input,"exit\n\0");
+        /*  WIP NE FONCTIONNE PLUS !!! Vérification si la commande exit est saisie*/
+        //miniShell = strcmp(input,"exit\n\0");
     }
 
     return EXIT_SUCCESS;
