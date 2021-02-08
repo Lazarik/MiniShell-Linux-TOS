@@ -11,12 +11,12 @@ Année: 2020-2021 - 2A2
 #include <sys/wait.h>
 
 #define INPUT_LENGTH 50
+#define CMD_LENGTH 50
 
 int main(int argc,char ** argv) {
 
     int miniShell,childFork;
     char input[INPUT_LENGTH];
-    char *cmd[15];
 
     miniShell = 1; 
 
@@ -28,14 +28,23 @@ int main(int argc,char ** argv) {
     s'execute tant que l'utilisateur ne saisie pas la commande exit
     */
     while(miniShell != 0){
+
+        char *cmd[CMD_LENGTH] = {NULL};
+        char *pointeur = input;
+
         /*Pour debug*/
-        printf("\nPID Parent: %i",getpid());
+        //printf("\nPID Parent: %i",getpid());
 
         printf("\nTOS-Shell >");
         fgets(input,INPUT_LENGTH,stdin);
 
-        cmd[0] = "ls";
-        cmd[1] = NULL;
+        /*Converti la chaine saisi en tableau CMD*/
+        for (int i = 0; i < sizeof(cmd) && *pointeur; pointeur++) {
+            if (*pointeur == ' ') continue;
+            if (*pointeur == '\n') break;
+            for (cmd[i++] = pointeur; *pointeur && *pointeur != ' ' && *pointeur != '\n'; pointeur++);
+            *pointeur = '\0';
+        }
 
         if (fork() == 0){
             execvp(cmd[0], cmd);
