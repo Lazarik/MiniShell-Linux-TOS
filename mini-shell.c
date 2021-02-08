@@ -34,8 +34,11 @@ int main(int argc,char ** argv) {
 
         /*Pour debug*/
         //printf("\nPID Parent: %i",getpid());
-
+        /*Couleur Rouge*/
+        printf("\033[31m");
         printf("\nTOS-Shell >");
+        /*Couleur BLeu*/
+        printf("\033[34m");
         fgets(input,INPUT_LENGTH,stdin);
 
         /*Converti la chaine saisi en tableau CMD*/
